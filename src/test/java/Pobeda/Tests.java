@@ -43,7 +43,7 @@ public class Tests {
     }
 
     @Test
-    public void checkDepDateFrame() throws InterruptedException {
+    public void checkDepDateFrame()  {
         Search search = new Search(driver);
         String departureCity = "Москва";
         String arrivalCity = "Санкт-Петербург";
@@ -56,9 +56,18 @@ public class Tests {
         Assert.assertEquals("red",search.getFrameColor());
     }
 
+    @Test
+    public void checkBookingBottom() {
+        MainPage mp = new MainPage(driver);
+        mp.bookingManagementBottomButtonClick();
+        BookingManagement bm = new BookingManagement(driver);
+        bm.chekUrl();
+        Assert.assertTrue(bm.elementsArePresent());
+        bm.searchFail();
+    }
+
     @After
     public void tearDown() {
-        driver.close();
         driver.quit();
     }
 }

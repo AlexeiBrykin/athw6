@@ -60,8 +60,7 @@ public class Search {
         searchButton.click();
     }
 
-    public String getFrameColor() throws InterruptedException {
-      //  Thread.sleep(1000);
+    public String getFrameColor() {
         wait.until(ExpectedConditions.attributeContains(departureDateFrame, "border-color", "rgb(213, 0, 98)"));
         System.out.println(departureDateFrame.getCssValue("border-color"));
         if (departureDateFrame.getCssValue("border-color").equals("rgb(213, 0, 98)"))
