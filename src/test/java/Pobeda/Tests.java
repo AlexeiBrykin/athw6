@@ -24,28 +24,26 @@ public class Tests {
     }
 
     @Test
+    public void chekMainPage(){
+        String title = "Авиакомпания «Победа» - купить авиабилеты онлайн," +
+                " дешёвые билеты на самолёт, прямые и трансферные рейсы с пересадками";
+        MainPage mp = new MainPage(driver);
+        Assert.assertEquals(title, mp.getTitleText());
+        System.out.println("проверен титул");
+        Assert.assertTrue(mp.isLogoVisible());
+        System.out.println("проверено лого");
+    }
+
+    @Test
     public void checkPopup() {
         Popup popup = new Popup(driver);
-
-        // Ожидание появления кнопки информации
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOf(popup.informationButton));
-
-        // Наведение курсора на кнопку информации
         popup.hoverToInformationButton();
-
-        // Ожидание появления всплывающего окна
-        wait.until(ExpectedConditions.visibilityOf(popup.popup));
-
-        // Проверка видимости всплывающего окна
-        Assert.assertTrue("Всплывающее окно должно быть видимым", popup.isPopupVisible());
+        Assert.assertTrue(popup.isPopupVisible());
+        System.out.println("асерт успешен");
     }
 
     @After
     public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-            driver = null; // Очистка ссылки
-        }
+            driver.close();
     }
 }
