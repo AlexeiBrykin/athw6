@@ -42,8 +42,23 @@ public class Tests {
         System.out.println("асерт успешен");
     }
 
+    @Test
+    public void checkDepDateFrame() throws InterruptedException {
+        Search search = new Search(driver);
+        String departureCity = "Москва";
+        String arrivalCity = "Санкт-Петербург";
+        search.enterDeparture(departureCity);
+        System.out.println("деп в тесте готов");
+        search.enterArrival(arrivalCity);
+        System.out.println("арр в тесте готов");
+        search.clickSearchButton();
+        System.out.println("поиск кликнут");
+        Assert.assertEquals("red",search.getFrameColor());
+    }
+
     @After
     public void tearDown() {
-            driver.close();
+        driver.close();
+        driver.quit();
     }
 }
